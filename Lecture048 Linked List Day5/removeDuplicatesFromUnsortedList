@@ -1,0 +1,22 @@
+#include<map>
+Node *removeDuplicates(Node *head)
+{
+    map<int, bool>visited;
+      Node* prev = head;
+      Node* curr = head->next;
+      
+      visited[prev->data] = true;
+      
+      while(curr!=NULL){
+          if(visited[curr->data] == true){
+              prev->next = curr-> next;
+              delete(curr);
+          }
+          else{
+              visited[curr->data] = true;
+              prev = prev->next;
+          }
+          curr = prev->next;
+      }
+      return head;
+}
